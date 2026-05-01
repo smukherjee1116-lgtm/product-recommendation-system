@@ -19,18 +19,18 @@ st.set_page_config(
 # ─── Load data and models ──────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv(r'C:\Users\Lenovo\product-recommendation-system\data\ratings_clean.csv')
+    df = pd.read_csv('data/ratings_clean.csv')
     df['user_encoded'] = pd.Categorical(df['user_id']).codes
     df['product_encoded'] = pd.Categorical(df['product_id']).codes
     return df
 
 @st.cache_resource
 def load_models():
-    with open(r'C:\Users\Lenovo\product-recommendation-system\src\svd_model.pkl', 'rb') as f:
+    with open('src/svd_model.pkl', 'rb') as f:
         svd = pickle.load(f)
-    with open(r'C:\Users\Lenovo\product-recommendation-system\src\matrix_reduced.pkl', 'rb') as f:
+    with open('src/matrix_reduced.pkl', 'rb') as f:
         matrix_reduced = pickle.load(f)
-    with open(r'C:\Users\Lenovo\product-recommendation-system\src\encoders.pkl', 'rb') as f:
+    with open('src/encoders.pkl', 'rb') as f:
         encoders = pickle.load(f)
     return svd, matrix_reduced, encoders
 
